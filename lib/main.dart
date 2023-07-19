@@ -20,6 +20,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   //Declaração de Variavel
   String buttonName = 'click';
+  int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +37,33 @@ class _MyAppState extends State<MyApp> {
 
         //Insere valores
         body: Center(
-          //Botão de interação
-          child: ElevatedButton(
-            onPressed: () {
-              //Pode realizar uma mudança de estado
-              setState(() {
-                buttonName = 'Clicked';
-              });
-            },
-            child: Text(buttonName),
+          //Cria o tamanho do fundo para preencher de widget
+          child: SizedBox(
+            width: 300,
+            child: Column(
+              //Alinha os botões, dados...
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                //Botão de interação
+                ElevatedButton(
+                  onPressed: () {
+                    //Pode realizar uma mudança de estado
+                    setState(() {
+                      buttonName = 'Clicked';
+                    });
+                  },
+                  child: Text(buttonName),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        buttonName = 'Clicked2';
+                      });
+                    },
+                    child: Text(buttonName))
+              ],
+            ),
           ),
         ),
 
@@ -63,6 +82,13 @@ class _MyAppState extends State<MyApp> {
               icon: Icon(Icons.settings),
             ),
           ],
+          //Muda as abas quando clicadas a partir de seu index
+          currentIndex: currentIndex,
+          onTap: (int index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
         ),
       ),
     );
