@@ -38,33 +38,40 @@ class _MyAppState extends State<MyApp> {
         //Insere valores
         body: Center(
           //Cria o tamanho do fundo para preencher de widget
-          child: SizedBox(
-            width: 300,
-            child: Column(
-              //Alinha os botões, dados...
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                //Botão de interação
-                ElevatedButton(
-                  onPressed: () {
-                    //Pode realizar uma mudança de estado
-                    setState(() {
-                      buttonName = 'Clicked';
-                    });
-                  },
-                  child: Text(buttonName),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        buttonName = 'Clicked2';
-                      });
-                    },
-                    child: Text(buttonName))
-              ],
-            ),
-          ),
+          child: currentIndex == 0
+              ? Container(
+                  width: double.infinity,
+                  height: double.infinity,
+                  color: Colors.indigo,
+                  child: Row(
+                    //Alinha os botões, dados...
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //Botão de interação
+                      ElevatedButton(
+                        //Como alterar o estilo de um widget
+                        style: ElevatedButton.styleFrom(
+                            onPrimary: Colors.purple, primary: Colors.black),
+                        onPressed: () {
+                          //Pode realizar uma mudança de estado
+                          setState(() {
+                            buttonName = 'Clicked';
+                          });
+                        },
+                        child: Text(buttonName),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              buttonName = 'Clicked2';
+                            });
+                          },
+                          child: Text(buttonName))
+                    ],
+                  ),
+                )
+              : Image.asset('images/kirin.png'),
         ),
 
         //Botões de navegação
